@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health charts test</title>
+<style>
+  :root {
+    --health-chart-1: #6ea8fe;      /* main series   */
+    --health-chart-2: #a5c8ff;      /* systolic      */
+    --health-chart-text: #9aa4b2;
+    --health-chart-grid: rgba(255,255,255,.08);
+    --health-chart-move: #f39a32; --health-chart-exercise: #35e07a; --health-chart-stand: #6dbced;
+  }
+  body { margin: 0; padding: 16px; background: #0d1117; color: #c9d1d9; font: 15px/1.4 system-ui, sans-serif; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .card { background: #161b22; border: 1px solid #262c36; border-radius: 10px; padding: 14px; }
+  .card h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #8b949e; }
+  .wide { grid-column: 1 / -1; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="card wide"><h3>Blood pressure</h3>
+      <div data-health-chart="bp" data-periods="last,1,7,30,90,all"></div></div>
+    <div class="card"><h3>Heart rate (48 h)</h3>
+      <div data-health-chart="heartrate" data-period="36" data-periods="36,7,90,all"></div></div>
+    <div class="card"><h3>Sleeping</h3><div data-health-chart="sleep"></div></div>
+    <div class="card"><h3>Weight</h3><div data-health-chart="weight"></div></div>
+    <div class="card"><h3>Respiratory rate</h3><div data-health-chart="respiratory"></div></div>
+    <div class="card"><h3>Smokes &amp; Coffee</h3><div data-health-chart="intake" data-periods="30,90,months"></div></div>
+    <div class="card"><h3>ECG</h3><div data-health-chart="ecg"></div></div>
+    <div class="card"><h3>Activity today</h3><div data-health-chart="activity" data-goals="300,30,12"></div></div>
+    <div class="card wide"><h3>Steps</h3><div data-health-chart="steps" data-periods="30,90,months"></div></div>
+    <div class="card"><h3>Heart fitness</h3><div data-health-chart="fitness" data-periods="months,weeks"></div></div>
+    <div class="card wide"><h3>Daily rhythm (steps per hour, 8 weeks)</h3><div data-health-chart="heatmap" data-period="56" data-metric="steps"></div></div>
+    <div class="card wide"><h3>Daily rhythm (heart rate per hour, 8 weeks)</h3><div data-health-chart="heatmap" data-period="56" data-metric="hr"></div></div>
+  </div>
+  <script src="health-charts.js" defer></script>
+</body>
+</html>

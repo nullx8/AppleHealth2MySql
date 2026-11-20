@@ -1,0 +1,16 @@
+# local configuration with credentials
+config.php
+
+# personal health data: raw uploads and manual import drop folder
+incoming/*
+!incoming/.gitkeep
+import/*
+!import/.gitkeep
+
+# local Claude Code notes
+CLAUDE.md
+
+# editor swap / backup files
+*.swp
+*.swo
+*~
