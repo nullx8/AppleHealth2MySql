@@ -8,7 +8,7 @@
  * Results are cached for a few seconds/minutes per key, as before.
  *
  * Keys: all (JSON with every value), smokeavg, respiratory, pulse, oxypulse, steps, bp, weight, bmi,
- *       bedtime, sleepavg, ping (default)
+ *       bedtime, sleepavg, technicals, records, ping (default)
  */
 
 declare(strict_types=1);
@@ -215,6 +215,13 @@ $handlers = [
         return '<strong>' . number_format((float)$t->points) . '</strong> records since <strong>'
              . date('M Y', strtotime($t->first_day)) . '</strong> · <strong>' . (int)$t->metrics . '</strong> metrics'
              . ($t->last_sync ? ' · last sync <strong>' . date('j M H:i', strtotime($t->last_sync)) . '</strong>' : '');
+    }),
+
+    // number of unique records stored (= rows in raw, duplicates not counted), plain "5,770,330" to use inside text.
+    // Same cheap source as "technicals": the per-upload counters, no COUNT(*) over millions of rows.
+    'records' => fn() => cached('records', 300, function () {
+        $n = (float)(row("SELECT SUM(points_new) n FROM upload")->n ?? 0);
+        return $n > 0 ? number_format($n) : null;
     }),
 
     'ping' => fn() => cached('ping', 180, function () {

@@ -8,7 +8,7 @@ The export from Apple Health to JSON is done by the (paid) iOS app
 those JSON uploads, keeps the originals, removes duplicates and sorts everything into
 proper tables you can query, chart or brag about.
 
-Background story: https://0x8.in.th/random/automating-health-data-apple-health-export-to-mysql
+Background story: https://0x8.in.th/automated-health-data-done-properly
 
 **Live example:** https://0x8.in.th/vitals – my own health page, built on this database
 with the code in `production/` (charts, current values, ECG, sleep, activity …).
